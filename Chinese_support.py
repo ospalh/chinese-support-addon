@@ -46,11 +46,10 @@ sys.path.insert(0, os.path.join(addon_dir, "chinese") )
 #which don't come with Anki on Windows or MacOS but are needed for cjklib
 sys.path.append( os.path.join(addon_dir, "chinese", "python-2.7-modules") )
 
-# Quick-and-dirty trick to remove cjklib warning on a Linux with a
-# full python install, about having two different versions of
-# sqlalchemy, httplib2, ... on Ubuntu and Fedora
-sys.path = filter(
-    lambda a: not(re.search(r'(dist|site)-packages$', a)), sys.path)
+# TODO: Check that we import the correct cjklib when the user has
+# installed eir own version as a site package. The “Quick-and-dirty
+# trick” made it impossible for other add-ons to use sites packages
+# when they were installed.
 
 import chinese.upgrade
 import chinese.templates.ruby ; chinese.templates.ruby.install()
